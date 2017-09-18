@@ -1,0 +1,15 @@
+{% extends 'blog/Temp/index.html' %}
+{% block post %}
+					{% for post in post_list %}
+					<article>
+						<div class="heading">
+							<h2><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h2>
+							<p>By {{post.author}} on {{post.created_time}} - <a href="#">01 Commnets</a></p>
+						</div>
+							<div class="content">
+							<p>&nbsp&nbsp{{post.abstract}}...</p>
+							</div>
+					</article>
+					{% empty %}
+					{% endfor %}
+{% endblock post %}

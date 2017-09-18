@@ -1,0 +1,10 @@
+1.没有迁移数据库（makemigrations,migrate）无法创建用户django.db.utils.OperationalError: no such table: auth_user
+2.使用模板时，HTML在‘工程/templates/应用/’下，settings.py 中设置路径DIR=【os.path.join(BASE_DIR,'templates')】
+    静态文件（css，js）在‘工程/应用/static/css(js)’下，载入模板写{% load staticfiles %}
+    {% static '应用/css(js)/xxx.css' %}
+3.模板继承{% block xxx%}{% endblock xxx%} {% extend '(template)blog/Temp/base.html'%}
+4.reverse在django.core.urlresolvers中，标题跳转详情页--类.get_absolute_url（用到reverse）
+5.markdowm处理时(views.py)需要在模板中加safe标签（{{post.body|safe}}），否则会显示html代码
+6.自定义标签,blog应用/templatestags/__init__.py+blog_tags.py 写标签函数，{% load blog_tags %}{% 函数 as 变量 %}
+    在settings.py中写STATIC_URL = '/templatetags/'
+7.在models中新建模型时，更新models ‘python manage.py makegrations app(name)’

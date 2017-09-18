@@ -1,0 +1,14 @@
+{% extends 'blog/Temp/index.html' %}
+{% block detail %}
+					<article>
+						<div class="heading">
+							<h2>{{post.title}}</h2>
+						</div>
+						<div class="content">
+							{{post.content|safe}}
+						</div>
+						<div class="info">
+							<p>By {{post.author}} on {{post.created_time}} - 01 Commnets</p>
+						</div>
+					</article>
+{% endblock detail%}
