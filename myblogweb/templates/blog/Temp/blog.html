@@ -8,7 +8,43 @@
 							{{post.content|safe}}
 						</div>
 						<div class="info">
-							<p>By {{post.author}} on {{post.created_time}} - 01 Commnets</p>
+							<p>By {{post.author}} on {{post.created_time}} - {{post.views}} Views</p>
+						</div>
+							<form action = "{% url 'comments:post_comment' post.pk %}" method = "post" class = "comment-form">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-md-4">
+										<label for="{{ form.name.id_for_label }}">名字:</label>
+										{{ form.name }}
+										{{ form.name.errors }}
+									</div>
+									<div>
+										<label for="{{ form.text.id_for_label }}">评论:</label>
+										{{ form.text }}
+										{{ form.text.errors }}
+										<button type = "submit" class="comment-btn">发布</button>
+									</div>
+								</div>
+							</form>
+						<div>
+							<h3>评论列表：共 {{post.comment_set.count}} 条评论</h3>
+							<ul>
+								{% for comment in comment_list %}
+								<li>
+									<span>
+										{{comment.name}}
+									</span>
+									<time>
+										于 {{comment.created_time}} 发布：
+									</time>
+									<div>
+										{{comment.text}}
+									</div>
+								</li><br>
+								{% empty %}
+								暂无评论
+								{% endfor %}
+							</ul>
 						</div>
 					</article>
 {% endblock detail%}

@@ -4,7 +4,7 @@
 					<article>
 						<div class="heading">
 							<h2><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h2>
-							<p>By {{post.author}} on {{post.created_time}} - <a href="#">01 Commnets</a></p>
+							<p>By {{post.author}} on {{post.created_time}} - {{post.views}} Views - {{post.comment_set.count}} Comments</p>
 						</div>
 							<div class="content">
 							<p>&nbsp&nbsp{{post.abstract}}...</p>

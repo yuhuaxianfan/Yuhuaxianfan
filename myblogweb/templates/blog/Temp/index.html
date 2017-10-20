@@ -74,11 +74,11 @@
 			<div class="wrap-nav">
 				<div class="menu">
 					<ul>
-						<li><a href="">Home</a></li>
-						<li><a href="">Blog</a></li>
-						<li><a href="">Gallery</a></li>
-						<li><a href="">About</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="{% url 'blog:index' %}">Home</a></li>
+						<li><a href="{% url 'blog:index' %}">Blog</a></li>
+						<li><a href="{% url 'upload:upload' %}">Gallery</a></li>
+						<li><a href="{% url 'blog:index' %}">About</a></li>
+						<li><a href="{% url 'blog:index' %}">Contact</a></li>
 					</ul>
 				</div>
 			</div>
@@ -93,6 +93,8 @@
 		<div class="row block">
 			<div id="main-content" class="col-2-3">
 				<div class="wrap-col">
+					{% block img %}
+					{% endblock img %}
 					{% block post %}
 					<!--
 					{% for post in post_list %}
@@ -115,11 +117,11 @@
 					{% block detail %}
 					{% endblock detail %}
 					{% if is_paginated %}
-				<div class="pagination-simple" align="center">
+				<div class="pagination-simple" align="center" style="float: left; width: 600px;height: 30px;">
 						{% if page_obj.has_previous %}
 							<a href="?page={{page_obj.previous_page_number}}">上一页</a>
 						{% endif %}
-						<span class="current">第 {{page_obj.number}} 页/共 {{paginator.num_pages}} 页</span>
+						<span class="current" >第 {{page_obj.number}} 页/共 {{paginator.num_pages}} 页</span>
 						{% if page_obj.has_next %}
 							<a href="?page={{page_obj.next_page_number}}">下一页</a>
 						{% endif %}
@@ -137,7 +139,7 @@
 						</div>
 					</div>
 					<div class="box">
-						<div class="heading"><h2>最近文章</h2></div>
+						<div class="heading"><h2>最近文章-최신문장</h2></div>
 						{% get_recent_posts as new_posts%}
 						<div class="content">
 							{% for post in new_posts %}
@@ -150,7 +152,7 @@
 						</div>
 					</div>
 					<div class="box">
-						<div class="heading"><h2>Categories</h2></div>
+						<div class="heading"><h2>分类-분류</h2></div>
 						<div class="content">
 							{% get_categories as category_list %}
 							<ul>
@@ -162,8 +164,9 @@
 							</ul>
 						</div>
 					</div>
+				{% block upload %}
+				{% endblock upload %}
 				</div>
-			</div>
 		</div>
 	</div>
 </section>

@@ -19,6 +19,8 @@ class Post(models.Model):
 	abstract = models.CharField(max_length=100,blank=True)
 	#文章分类
 	category = models.ForeignKey(Category)
+	#阅读量
+	views = models.PositiveIntegerField(default=0)
 	def __str__(self):
 		return self.title
 	#跳转详情页
@@ -33,6 +35,12 @@ class Post(models.Model):
 			])
 			self.abstract = strip_tags(md.convert(self.content))[:50]
 		super(Post,self).save(*args,**kwargs)
+	#文章阅读量
+	def increase_views(self):
+		#浏览量+1
+		self.views += 1
+		#更新浏览量,覆写save方法
+		self.save(update_fields=['views'])
 
 
 

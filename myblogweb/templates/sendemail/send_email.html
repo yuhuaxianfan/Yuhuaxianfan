@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>QQ邮件发送</title>
+</head>
+<body>
+<form method="post" action="/sendmail/" enctype="multipart/form-data">
+    {% csrf_token %}
+    发送到：<input type="email" name="ToEmail">
+    标题：<input type="text" name="Title">
+    内容：<input type="text" name = 'Content'>
+    <input type="submit" value="发送">
+</form>
+</body>
+</html>

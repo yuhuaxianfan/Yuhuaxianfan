@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="utf-8">
+        <title>
+            上传图片
+        </title>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js">
+        </script>
+        <script src="http://malsup.github.com/jquery.form.js">
+        </script>
+
+        <script type="text/javascript">
+            (function() {
+
+                $('#myform').ajaxForm({
+                    success: function(data) {
+                        var img = document.getElementById("preview_img");
+                        img.src = data.imgurl;
+                        img.style.display = 'block';
+                    }
+                });
+
+            })();
+        </script>
+
+        <style>
+            .Image {
+                max-width:600px;height:auto;cursor:pointer;
+                    border:1px dashed #4E6973;padding: 3px;
+                    }
+        </style>
+    </head>
+
+    <body>
+        <form id="myform" action="/upload/uploadPic" method="post" enctype="multipart/form-data">
+            <!-- {% csrf_token %} -->
+            <input type="file" name="photo" id="image_upload" />
+            <br>
+            <input type="submit" value="上传" />
+        </form>
+        <img id="preview_img" src="" width="300" height="200" class="Image" style="display:none">
+    </body>
+
+</html>

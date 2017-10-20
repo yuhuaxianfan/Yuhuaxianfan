@@ -1,0 +1,8 @@
+
+<title>사진을 올리다--上传图片</title>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="img">
+    <button type="submit">올리-上传</button>
+</form>

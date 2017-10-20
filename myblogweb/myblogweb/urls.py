@@ -17,6 +17,8 @@ from django.conf.urls import url,include
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'',include('uploadimg.urls',namespace='upload')),
     url(r'',include('blog.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'',include('comments.urls')),
 ]

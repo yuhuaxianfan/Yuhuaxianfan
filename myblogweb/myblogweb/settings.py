@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'vpcv+y=i$55uq@&#d&i5l=*4q1-0u@is@$f0duw(@$sm0bs!#n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost','.solover.cn']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'comments',
+    'uploadimg',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -73,13 +74,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myblogweb.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST':'127.0.0.1',
+        'PORT':3306,
+        'NAME': 'myweb',
+        'USER':'root',
+        'PASSWORD':'admin1234',
     }
 }
 # DATABASES = {
@@ -126,3 +129,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/templatetags/'
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media').replace('\\','/')
+
+
+#发邮件
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '447724352@qq.com'
+EMAIL_HOST_PASSWORD='hvvaigufhyvsbifj'
+EMAIL_USE_TLS = True
+EMAIL_FROM = '447724352@qq.com'
